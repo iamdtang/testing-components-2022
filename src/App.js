@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.css";
+import Rating from "./Rating";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUsd } from "@fortawesome/free-solid-svg-icons";
 
-function App() {
+export default function App() {
+  const [rating, setRating] = useState(2);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Rating rating={rating} total={3}>
+      {(isFilled, starNumber) => {
+        const color = isFilled ? "green" : "#ddd";
+        const size = "3x";
+
+        return (
+          <button
+            type="button"
+            className="btn btn-link"
+            onClick={() => {
+              setRating(starNumber);
+            }}
+          >
+            <FontAwesomeIcon icon={faUsd} color={color} size={size} />
+          </button>
+        );
+      }}
+    </Rating>
   );
 }
-
-export default App;
