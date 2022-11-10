@@ -1,7 +1,8 @@
 export default function Rating(props) {
   const ratingItems = [];
+  const count = props.total || 5;
 
-  for (let i = 1; i <= props.total; i++) {
+  for (let i = 1; i <= count; i++) {
     ratingItems.push(
       <RatingItem
         itemRatingNumber={i}
